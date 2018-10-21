@@ -59,4 +59,19 @@ public class Predmet {
     public void setSifraPredmeta(String sifraPredmeta) {
         this.sifraPredmeta = sifraPredmeta;
     }
+
+    @Override
+    public String toString() {
+        String ispis = "";
+        int redniBroj = 0;
+        for (int i = 0; i < maxBrojStudenata; i++) {
+            if(studenti[i] != null) {
+                redniBroj++;
+                ispis += redniBroj + ". ";
+                ispis = ispis.concat(studenti[i].toString());
+                ispis = ispis.concat("\n");
+            }
+        }
+        return ispis;
+    }
 }

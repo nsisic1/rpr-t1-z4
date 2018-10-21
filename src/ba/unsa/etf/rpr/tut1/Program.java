@@ -6,13 +6,17 @@ public class Program {
         Predmet predmet = new Predmet("RPR", "R", 100);
         Student prviStudent = new Student("Hakan", "Sukur", 90001);
         predmet.upisi(prviStudent);
+        System.out.println(predmet);
 
         Student drugiStudent = new Student("Bosko", "Buha", 90002);
         predmet.upisi(drugiStudent);
+        System.out.println(predmet);
+        
         predmet.ispisi(drugiStudent);
+        System.out.println(predmet);
 
-        // kreiranje novog predmeta, novog studenta, upis studenta na predmet, ispis studenta sa predmeta,
-        // brisanje studenta, brisanje predmeta, te ispis spiska studenata na predmetu.
+        //System.out.println(prviStudent);
+        //System.out.println(drugiStudent);
     }
 
 }
