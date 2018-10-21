@@ -11,9 +11,14 @@ public class Program {
         Student drugiStudent = new Student("Bosko", "Buha", 90002);
         predmet.upisi(drugiStudent);
         System.out.println(predmet);
-        
+
         predmet.ispisi(drugiStudent);
         System.out.println(predmet);
+
+        // Drugi student nije vise referenciran iz niza u predmet-u, pa ga mozemo izbrisati
+        drugiStudent = null;
+        System.gc();
+
 
         //System.out.println(prviStudent);
         //System.out.println(drugiStudent);

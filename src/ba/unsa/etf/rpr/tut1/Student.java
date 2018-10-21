@@ -41,4 +41,9 @@ public class Student {
         // field will be printed out
         return prezime + " " + ime + " (" + String.valueOf(brojIndeksa) + ")";
     }
+
+    protected void finalize()
+    {
+        System.out.println( "Student izbrisan.");
+    }
 }
