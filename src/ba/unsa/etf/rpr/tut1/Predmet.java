@@ -7,7 +7,7 @@ public class Predmet {
 
     private Student[] studenti;
 
-    public Predmet(String naziv, String sifra, int maxBroj) {
+    Predmet(String naziv, String sifra, int maxBroj) {
         nazivPredmeta = naziv;
         sifraPredmeta = sifra;
         maxBrojStudenata = maxBroj;
@@ -15,36 +15,42 @@ public class Predmet {
         studenti = new Student[maxBrojStudenata];
     }
 
-    public void upisi(Student student) {
-        boolean vecUpisan = false;
+    void upisi(Student student) {
         // Provjeravamo da li je student vec upisan
+        boolean popunjen = true;
+        int prviSlobodan = 0;
         for(int i = 0; i < maxBrojStudenata; i++) {
-            if (studenti[i] == student) {
-                vecUpisan = true;
-                return;
+            if (studenti[i] != null) {
+                if (studenti[i] == student) {
+                    throw new IllegalArgumentException("Student vec upisan!");
+                }
+            } else
+            {
+                if (popunjen) // Da bi odrzali redoslijed
+                    prviSlobodan = i;
+                popunjen = false;
             }
         }
 
-        // Upisujemo studenta ako nije upisan i ima mjesta
-        for (int i = 0; i < maxBrojStudenata; i++) {
-            if (studenti[i] == null) {
-                studenti[i] = student;
-                break;
-            }
+        if (!popunjen) {
+            studenti[prviSlobodan] = student;
+        } else {
+            throw new IllegalArgumentException("Predmet je vec pun!");
         }
-        //
     }
 
-    public void ispisi(Student student) {
+    void ispisi(Student student) {
         for(int i = 0; i < maxBrojStudenata; i++) {
             if (studenti[i] == student) {
                 studenti[i] = null;
-                break;
+                return;
             }
         }
+        // Ako nije bio upisan
+        throw new IllegalArgumentException("Student nije bio upisan u ovaj kurs!");
     }
 
-    public String getNazivPredmeta() {
+    String getNazivPredmeta() {
         return nazivPredmeta;
     }
 
@@ -52,7 +58,7 @@ public class Predmet {
         this.nazivPredmeta = nazivPredmeta;
     }
 
-    public String getSifraPredmeta() {
+    String getSifraPredmeta() {
         return sifraPredmeta;
     }
 
@@ -67,7 +73,7 @@ public class Predmet {
         for (int i = 0; i < maxBrojStudenata; i++) {
             if(studenti[i] != null) {
                 redniBroj++;
-                ispis += redniBroj + ". ";
+                ispis = ispis.concat(redniBroj + ". ");
                 ispis = ispis.concat(studenti[i].toString());
                 ispis = ispis.concat("\n");
             }

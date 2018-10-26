@@ -5,34 +5,49 @@ public class Student {
     private String prezime;
     private int brojIndeksa;
 
-    public Student(String ime, String prezime, int brojIndeksa) {
-        this.ime = ime;
-        this.prezime = prezime;
-        this.brojIndeksa = brojIndeksa;
+    Student(String ime, String prezime, int brojIndeksa) {
+        setIme(ime);
+        setPrezime(prezime);
+        setBrojIndeksa(brojIndeksa);
     }
 
-    public String getIme() {
+    String getIme() {
         return ime;
     }
 
-    public void setIme(String ime) {
-        this.ime = ime;
+    void setIme(String ime) {
+        if (!ime.matches(".*\\d+.*")) {
+            this.ime = ime;
+        } else
+        {
+            throw new IllegalArgumentException("Ime sadrzi cifru/e.");
+        }
     }
 
-    public String getPrezime() {
+    String getPrezime() {
         return prezime;
     }
 
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
+    void setPrezime(String prezime) {
+        if (!prezime.matches(".*\\d+.*")) {
+            this.prezime = prezime;
+        } else
+        {
+            throw new IllegalArgumentException("Prezime sadrzi cifru/e.");
+        }
     }
 
-    public int getBrojIndeksa() {
+    int getBrojIndeksa() {
         return brojIndeksa;
     }
 
-    public void setBrojIndeksa(int brojIndeksa) {
-        this.brojIndeksa = brojIndeksa;
+    void setBrojIndeksa(int brojIndeksa) {
+        if (brojIndeksa >= 0) {
+            this.brojIndeksa = brojIndeksa;
+        } else
+        {
+            throw new IllegalArgumentException("Negativan broj");
+        }
     }
 
     @Override

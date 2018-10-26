@@ -17,10 +17,28 @@ class StudentTest {
     }
 
     @Test
+    void testNepravilnoIme() {
+        Student s = new Student("", "", 0);
+        assertThrows(IllegalArgumentException.class, () -> s.setIme("9a"));
+    }
+
+    @Test
+    void testNepravilnoPrezime() {
+        Student s = new Student("", "", 0);
+        assertThrows(IllegalArgumentException.class, () -> s.setPrezime("9a"));
+    }
+
+    @Test
     void testSetBrojIndeksa() {
         Student student = new Student("Novi", "Clan", 0);
         student.setBrojIndeksa(54321);
         assertEquals(54321, student.getBrojIndeksa());
+    }
+
+    @Test
+    void testNegativanBrojIndeksa() {
+        Student student = new Student("Novi", "Clan", 0);
+        assertThrows(IllegalArgumentException.class, () -> student.setBrojIndeksa(-10));
     }
 
     @Test
